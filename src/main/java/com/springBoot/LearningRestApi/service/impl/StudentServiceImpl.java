@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.springBoot.LearningRestApi.config.ConfigMapper;
+import com.springBoot.LearningRestApi.dto.AddStudentRequestDto;
 import com.springBoot.LearningRestApi.dto.StudentDto;
 import com.springBoot.LearningRestApi.entity.Student;
 import com.springBoot.LearningRestApi.repository.StudentRepository;
@@ -39,5 +40,14 @@ public class StudentServiceImpl implements StudentService {
         // return studentRepository.findById(id)
         //         .map(s -> new StudentDto(s.getName(), s.getId(), s.getEmail()))
         //         .orElseThrow(() -> new IllegalArgumentException("Student not found with id: " + id));
+    }
+
+    @Override
+    public StudentDto createNewStudent(AddStudentRequestDto newstudentDto) {
+        Student newstudent = configMapper.modelMapper().map(newstudentDto, Student.class);
+        //saves in db
+        Student savedStudent = studentRepository.save(newstudent);
+        StudentDto studentDto = configMapper.modelMapper().map(savedStudent, StudentDto.class);
+        return studentDto;
     }
 }
