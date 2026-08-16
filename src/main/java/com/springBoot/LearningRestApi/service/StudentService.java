@@ -12,5 +12,5 @@ public interface StudentService {
     List<StudentDto> getAllStudents();
     StudentDto getStudentById(Long id);
     @Nullable
-    Object createNewStudent(AddStudentRequestDto newstudentDto);
+    StudentDto createNewStudent(AddStudentRequestDto newstudentDto);
 }
