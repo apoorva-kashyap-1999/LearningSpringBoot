@@ -12,5 +12,9 @@ public class StudentController {
     public StudentDto getStudent(){
         return new StudentDto("Apoorva ", 1L, "ap.kp@example.com");
     }
-     
+
+    @GetMapping("/student/{id}")
+    public StudentDto getStudentById(Long id){
+        return new StudentDto("Kashyap ", 3L, "apkk.kp@example.com");
+    }
 }
