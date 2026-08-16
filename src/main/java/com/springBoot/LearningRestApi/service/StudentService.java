@@ -7,4 +7,5 @@ import com.springBoot.LearningRestApi.dto.StudentDto;
 public interface StudentService {
     
     List<StudentDto> getAllStudents();
+    StudentDto getStudentById(Long id);
 }

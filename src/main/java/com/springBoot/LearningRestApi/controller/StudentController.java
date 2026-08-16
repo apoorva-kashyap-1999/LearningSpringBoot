@@ -3,28 +3,29 @@ package com.springBoot.LearningRestApi.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springBoot.LearningRestApi.dto.StudentDto;
-import com.springBoot.LearningRestApi.entity.Student;
-import com.springBoot.LearningRestApi.repository.StudentRepository;
+import com.springBoot.LearningRestApi.service.StudentService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequiredArgsConstructor
 public class StudentController {
     
-    private final StudentRepository studentRepository;
+    private final StudentService studentService;
 
-    public StudentController(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
     
-    @GetMapping("/student")
-    public List<Student> getStudent(){
-        return studentRepository.findAll();
+    @GetMapping("/students")
+    public List<StudentDto> getStudent(){
+        return studentService.getAllStudents();
     }
 
+    //id is path variable and dynamic
     @GetMapping("/student/{id}")
-    public StudentDto getStudentById(Long id){
-        return new StudentDto("Kashyap ", 3L, "apkk.kp@example.com");
+    public StudentDto getStudentById(@PathVariable Long id){
+        return studentService.getStudentById(id);
     }
 }
