@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
 
 import com.springBoot.LearningRestApi.dto.AddStudentRequestDto;
 import com.springBoot.LearningRestApi.dto.StudentDto;
@@ -48,7 +49,7 @@ public class StudentController {
 
     // @PostMapping("/students")
     @PostMapping
-    public ResponseEntity<StudentDto> createStudent(@RequestBody AddStudentRequestDto newstudentDto){
+    public ResponseEntity<StudentDto> createStudent(@RequestBody @Valid AddStudentRequestDto newstudentDto){
         // Implementation for creating a new student
         return ResponseEntity.status(HttpStatus.CREATED).body(studentService.createNewStudent(newstudentDto));
     }
